@@ -1,0 +1,28 @@
+{
+  "name": "@local/dsh-mcp-studio",
+  "version": "0.2.5",
+  "description": "MCP service manager for DSH Settings: HTTP and stdio connections, JSON import, token authentication, tool inspection and debugging, resource browsing, and explicit per-tool Agent permissions.",
+  "private": true,
+  "author": "luonianxin",
+  "homepage": "https://github.com/luonianxin/dsh-mcp-studio#readme",
+  "repository": {"type": "git", "url": "git+https://github.com/luonianxin/dsh-mcp-studio.git"},
+  "bugs": {"url": "https://github.com/luonianxin/dsh-mcp-studio/issues"},
+  "keywords": ["dsh-plugin", "mcp", "mcp-manager", "tools", "permissions"],
+  "engines": {"node": ">=22", "dsh": ">=0.2.1-rc.2 <0.3.0-0"},
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./host-0.2.3.js",
+    "./package.json": "./package.json",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": ["release-0.2.3", "host-0.2.3.js", "index.js", "client.js", "lib", "locale", "icon.svg", "cordis.patch.yml", "README.md", "VALIDATION.md", "LICENSE", "CHANGELOG.md"],
+  "dependencies": {"@modelcontextprotocol/sdk": "1.32.2", "zod": "4.6.7"},
+  "scripts": {"test": "node --test --test-isolation=none test/*.test.js verification/*.test.mjs", "check": "node --check index.js && node --check client.js"},
+  "dsh": {
+    "bundle": {"patch": "./cordis.patch.yml"},
+    "client": {"platform": "web", "immediately": true, "inject": ["@deepseek-ai/dsh-client-ui-settings"]}
+  }
+}
